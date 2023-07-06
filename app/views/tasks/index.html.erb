@@ -1,5 +1,5 @@
-<h3>タスク名</h3>
-
+<h2>予定一覧</h2>
+<h3>本日の日付は<%= Date.current.strftime("%Y年 %m月 %d日") %>です</h3>
 <% if flash[:notice] %>
    <p class="notice"><%= flash[:notice] %></p>
  <% end %>
@@ -13,6 +13,10 @@
       <th>終了日</th>
       <th>終日</th>
       <th>更新日時</th>
+      <th>予定詳細</th>
+      <th>予定編集</th>
+      <th>予定削除</th>
+      
     </tr>
   </thead>
 
@@ -21,17 +25,25 @@
       <tr>
        <td><%= task.id %></td>
        <td><%= task.title %></td>
-       <td><%= task.start_date.to_s(:date_jp) %></td>
-       <td><%= task.start_end.to_s(:date_jp) %></td>
-       <td><% if task.is_all_day = "true" %>○
-       <% else %>
-       ""
-       <% end %>
+       <td><%= task.start_date.strftime("%Y年 %m月 %d日") %></td>
+       <td><%= task.start_end.strftime("%Y年 %m月 %d日") %></td>
+       <td><% if task.is_all_day == true %>○
+           <% else %>
+           <% end %>
        </td>
        <td><%= task.updated_at.to_s(:datetime_jp) %></td>
+       <td>
+         <%= link_to "予定詳細", task %>
+       </td>
+       <td>
+           <%= link_to "予約編集", [:edit, task] %>
+       </td>
+       <td>
+           <%= link_to "削除",task, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+       </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<p>予約合計数は<%= @tasks.count('id') %>です</p>
 <p><%= link_to "新規予定登録", :new_task %></p>
