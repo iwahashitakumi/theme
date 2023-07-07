@@ -1,13 +1,8 @@
 class Task < ApplicationRecord
+  validates :title, presence: true
   validates :start_date, presence: true
   validates :start_end, presence: true
-  validates :title, presence: true
   validates :title, length: {maximum: 20}
-  validate :start_end_check
+  validates :start_end, comparison: { greater_than: :start_date }
 
-  def start_end_check
-    if start_date > start_end
-      errors.add(:start_end, "は開始日より前には設定できない")
-    end
-  end
 end
