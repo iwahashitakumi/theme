@@ -3,7 +3,9 @@
 <% if flash[:notice] %>
    <p class="notice"><%= flash[:notice] %></p>
  <% end %>
-
+ <% if flash[:alert] %>
+ <p class="notice"><%= flash[:alert] %></p>
+<% end %>
 <table>
   <thead>
     <tr>
@@ -25,8 +27,8 @@
       <tr>
        <td><%= task.id %></td>
        <td><%= task.title %></td>
-       <td><%= task.start_date.strftime("%Y年 %m月 %d日") %></td>
-       <td><%= task.start_end.strftime("%Y年 %m月 %d日") %></td>
+       <td><%= task.start_date.strftime("%Y/ %m/ %d") %></td>
+       <td><%= task.start_end.strftime("%Y/ %m/ %d") %></td>
        <td><% if task.is_all_day == true %>○
            <% else %>
            <% end %>

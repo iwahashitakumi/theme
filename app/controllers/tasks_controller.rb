@@ -8,13 +8,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params.require(:task).permit(:title, :start_date, :start_end, :is_all_day))
+    @task = Task.new(params.require(:task).permit(:title, :start_date, :start_end, :introduction, :is_all_day))
      if @task.save
        flash[:notice] = "予定を新規登録しました"
        redirect_to :tasks
      else
-       flash[:no_notice] = "予定の登録に失敗しました。"
-       render "new"
+       flash[:alert] = "予定の登録に失敗しました。"
+       redirect_to :tasks
      end
   end
 
@@ -28,7 +28,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-     if @task.update(params.require(:task).permit(:title, :start_date, :start_end, :is_all_day))
+     if @task.update(params.require(:task).permit(:title, :start_date, :start_end, :introduction, :is_all_day))
        flash[:notice] = "ユーザーIDが「#{@task.id}」の情報を更新しました"
        redirect_to :tasks
      else

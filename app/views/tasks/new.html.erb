@@ -1,9 +1,5 @@
 <h3>新規予定登録</h3>
 
-<% if flash[:no_notice] %>
-   <p class="notice"><%= flash[:no_notice] %></p>
- <% end %>
-
 <%= form_with model: @task do |f| %>
   <table>
    <tr>
@@ -24,6 +20,11 @@
    <tr>
      <th><%= f.label :is_all_day ,"終日" %></th>
      <td><%= f.check_box :is_all_day %></td>
+   </tr>
+
+   <tr>
+     <th><%= f.label :introduction ,"スケジュールメモ" %></th>
+     <td><%= f.text_area :introduction %></td>
    </tr>
 
    <div>

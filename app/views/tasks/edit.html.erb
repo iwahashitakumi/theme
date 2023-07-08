@@ -22,6 +22,11 @@
      <td><%= f.check_box :is_all_day %></td>
    </tr>
 
+   <tr>
+     <th><%= f.label :introduction ,"スケジュールメモ" %></th>
+     <td><%= f.text_area :introduction %></td>
+   </tr>
+
   <div>
     <ul>
       <li><%= f.submit "編集を完了する" %></li>
