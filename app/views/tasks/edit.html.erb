@@ -1,0 +1,36 @@
+<h3>予定編集</h3>
+
+<%= form_with model: @task do |f| %>
+  <table>
+   <tr>
+     <th><%= f.label :title ,"タイトル" %></th>
+     <td><%= f.text_field :title %></td>
+   </tr>
+
+   <tr>
+     <th><%= f.label :start_date ,"開始日" %></th>
+     <td><%= f.date_field :start_date %></td>
+   </tr>
+
+   <tr>
+     <th><%= f.label :start_end ,"終了日" %></th>
+     <td><%= f.date_field :start_end %></td>
+   </tr>
+
+   <tr>
+     <th><%= f.label :is_all_day ,"終日" %></th>
+     <td><%= f.check_box :is_all_day %></td>
+   </tr>
+
+   <tr>
+     <th><%= f.label :introduction ,"スケジュールメモ" %></th>
+     <td><%= f.text_area :introduction %></td>
+   </tr>
+
+  <div>
+    <ul>
+      <li><%= f.submit "編集を完了する" %></li>
+      <li><%= link_to "予定一覧に戻る", :tasks %></li>
+    </ul>
+  </div>
+<% end %>
